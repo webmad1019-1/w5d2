@@ -31,7 +31,7 @@
 
 - Use Google Maps on your applications
 - Using Axios to call third party APIs
-- Research on an unknown library like ChartJS - micro learning tomorrow
+- Research on an unknown library 🔍 like ChartJS - micro learning tomorrow
 
 # Bonus
 
