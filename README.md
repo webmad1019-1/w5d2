@@ -24,7 +24,7 @@
 # Next - day w5d3
 
 - Fullstack Pizza App 9
-- AJAX POST & PUT
+- Ajax with Axios - POST & PUT
 - Nodemailer
 
 # Goals
