@@ -12,14 +12,13 @@
 
 # Today - day w5d2
 
-- Google Maps
-- Google Maps with Express
+- Google Maps and with Express
 - A bit more on APIs
-- Ajax
+- Ajax with Axios
 
 ## Activities
 
-- Using API data to represent the information in canvas
+- Using API data to represent the information in canvas using ChartJS - research by you!
 - Using Google Maps to locate cafeterias along with CRUD
 
 # Next - day w5d3
