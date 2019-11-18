@@ -29,11 +29,10 @@
 
 # Goals
 
-- Deep dive into PassportJS
-- Understand roles
-- Serve certain parts of the site for certain people only
-- Be able to use social apps to log and sign up in your application
+- Use Google Maps on your applications
+- Using Axios to call third party APIs
+- Research on an unknown library like ChartJS - micro learning tomorrow
 
 # Bonus
 
-PassportJS strategies http://www.passportjs.org/packages/
+Cross filtering charts https://square.github.io/crossfilter/
