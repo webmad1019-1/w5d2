@@ -23,8 +23,8 @@
 
 # Next - day w5d3
 
-- Fullstack Pizza App 9
-- Ajax with Axios - POST & PUT
+- Fullstack Pizza App - starting 9am
+- Ajax with Axios - POST & PUT verbs
 - Nodemailer
 
 # Goals
