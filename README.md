@@ -24,7 +24,7 @@
 
 # Next - day w5d3
 
-- Fullstack APP 8:30
+- Fullstack Pizza App 9
 - AJAX POST & PUT
 - Nodemailer
 
