@@ -17,11 +17,32 @@ function startMap() {
     center: uluru
   });
 
-  infoWindowDisplay(theMap);
+  interactWithTheMap(theMap);
+  // infoWindowDisplay(theMap);
   // addMarkerWhereYouHaveClicked(theMap);
   // markersWithEvents(theMap);
   // showAirports(theMap);
   // displayMarkersRow(theMap);
+}
+
+function interactWithTheMap(theMap) {
+  let asideDOMEl = document.querySelector("aside");
+  let zurdo = false;
+
+  asideDOMEl.innerHTML = `<p>Zurdo ${zurdo}</p><input type='range' min=1 max=15 id='zoom-level' placeholder='zoom level' /><button id="move-left">Move left</button><button id="move-right">Move right</button>`;
+  asideDOMEl.style.left = 0;
+
+  document.querySelector("#move-left").onclick = function() {
+    theMap.panBy(500 * (zurdo ? -1 : 1), 0);
+  };
+
+  document.querySelector("#move-right").onclick = function() {
+    theMap.panBy(-500 * (zurdo ? -1 : 1), 0);
+  };
+
+  document.querySelector("#zoom-level").onchange = function() {
+    theMap.setZoom(+this.value);
+  };
 }
 
 function infoWindowDisplay(theMap) {
