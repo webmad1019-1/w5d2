@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="countryCode" value="denmark" />
+    <button id="check">Check country</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+    <script>
+      let countryHeaderDOMEl = document.createElement("h1");
+      let countryCapitalDOMEl = document.createElement("h3");
+
+      document.body.appendChild(countryHeaderDOMEl);
+      document.body.appendChild(countryCapitalDOMEl);
+      
+      document.getElementById("check").onclick = function() {
+        let countryCode = document.getElementById("countryCode").value;
+        let URL = `https://restcountries.eu/rest/v2/name/${countryCode}`;
+
+        axios.get(URL).then(countryData => {
+          let countryDataPayload = countryData.data[0];
+
+          countryHeaderDOMEl.innerHTML = countryDataPayload.nativeName;
+          countryCapitalDOMEl.innerHTML = countryDataPayload.capital;
+        });
+      };
+    </script>
+  </body>
+</html>

@@ -37,4 +37,23 @@ router.get("/createNewAirport", (req, res, next) => {
   });
 });
 
+router.post("/createNewAirportViaPostman", (req, res) => {
+  Airports.create({
+    name: req.body.name,
+    country: req.body.country,
+    location: req.body.location,
+    creation: req.body.creation
+  }).then(airportAdded => res.json(airportAdded));
+});
+
+router.delete("/airport/:airportID", (req, res) => {
+  Airports.findByIdAndDelete(req.params.airportID).then(airportDeleted =>
+    res.json({
+      deleted: true,
+      timestamp: new Date(),
+      airportDeleted
+    })
+  );
+});
+
 module.exports = router;
