@@ -28,6 +28,7 @@
 - Fullstack Pizza App - starting 9am
 - Ajax with Axios - POST & PUT verbs
 - Nodemailer
+- ChartJS - micro learning
 
 # Goals
 
