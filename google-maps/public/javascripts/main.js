@@ -10,19 +10,89 @@ let ironhackBCNData = {
 };
 
 let uluru = { lat: -25.363, lng: 131.044 };
+let barcelona = { lat: 41.39780037511012, lng: 2.1905911449111493 };
+let theMap;
+let markers = [];
 
 function startMap() {
-  const theMap = new google.maps.Map(document.getElementById("map"), {
+  theMap = new google.maps.Map(document.getElementById("map"), {
     zoom: 14,
-    center: uluru
+    center: barcelona
   });
 
-  interactWithTheMap(theMap);
+  // drawRoute(
+  //   theMap,
+  //   {
+  //     latitude: 41.39780037511012,
+  //     longitude: 2.1905911449111493
+  //   },
+  //   {
+  //     latitude: 41.7,
+  //     longitude: 2.3
+  //   }
+  // );
+  // locateMe(theMap);
+  // interactWithTheMap(theMap);
   // infoWindowDisplay(theMap);
-  // addMarkerWhereYouHaveClicked(theMap);
+  addMarkerWhereYouHaveClicked(theMap);
   // markersWithEvents(theMap);
   // showAirports(theMap);
   // displayMarkersRow(theMap);
+}
+
+function drawRoute(theMap, origin, destination) {
+  // Create a new directionsService object.
+  var directionsService = new google.maps.DirectionsService();
+  directionsService.route(
+    {
+      origin: origin.latitude + "," + origin.longitude,
+      destination: destination.latitude + "," + destination.longitude,
+      travelMode: "DRIVING"
+    },
+    function(response, status) {
+      if (status === google.maps.DirectionsStatus.OK) {
+        new google.maps.DirectionsRenderer({
+          suppressMarkers: true,
+          map: theMap,
+          directions: response
+        });
+      }
+    }
+  );
+}
+
+function locateMe(theMap) {
+  if (navigator.geolocation) {
+    // Get current position
+    // The permissions dialog will pop up
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        // Create an object to match Google's Lat-Lng object format
+        const currentCoords = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        new google.maps.Marker({
+          position: currentCoords,
+          map: theMap,
+          title: "I am here"
+        });
+
+        theMap.panTo(currentCoords);
+
+        // User granted permission
+        // Center the map in the position we got
+      },
+      function() {
+        // If something goes wrong
+        console.log("Error in the geolocation service.");
+      }
+    );
+  } else {
+    // Browser says: Nah! I do not support this.
+    console.log("Browser does not support geolocation.");
+  }
 }
 
 function interactWithTheMap(theMap) {
@@ -85,17 +155,33 @@ function infoWindowDisplay(theMap) {
 
 function addMarkerWhereYouHaveClicked(theMap) {
   theMap.addListener("click", function(e) {
-    let marker = new google.maps.Marker({
-      position: e.latLng,
-      // position: {
-      //   lat: e.latLng.lat(),
-      //   lng: e.latLng.lng()
-      // },
-      map: theMap,
-      draggable: true,
-      icon: "images/doge.png",
-      title: "Marker where you have clicked"
-    });
+    markers.push(
+      new google.maps.Marker({
+        position: e.latLng,
+        // position: {
+        //   lat: e.latLng.lat(),
+        //   lng: e.latLng.lng()
+        // },
+        map: theMap,
+        draggable: true,
+        icon: "images/doge.png",
+        title: "Marker where you have clicked"
+      })
+    );
+
+    if (markers.length === 2) {
+      drawRoute(
+        theMap,
+        {
+          latitude: markers[0].position.lat(),
+          longitude: markers[0].position.lng()
+        },
+        {
+          latitude: markers[1].position.lat(),
+          longitude: markers[1].position.lng()
+        }
+      );
+    }
   });
 }
 
